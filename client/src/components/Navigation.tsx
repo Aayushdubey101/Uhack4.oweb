@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Menu, X, Code } from 'lucide-react';
+import { ThemeToggle } from './ThemeToggle';
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -51,13 +52,15 @@ export default function Navigation() {
                 {item.name}
               </button>
             ))}
+            <ThemeToggle />
             <Button variant="default" className="ml-4" data-testid="nav-register">
               Register Now
             </Button>
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden">
+          <div className="md:hidden flex items-center space-x-2">
+            <ThemeToggle />
             <Button
               variant="ghost"
               size="icon"
