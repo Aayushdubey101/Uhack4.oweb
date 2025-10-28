@@ -56,36 +56,7 @@ export default function Hero() {
           </h2>
         </div>
 
-        {/* Tagline */}
-        <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-12">
-          Join the ultimate coding challenge where innovation meets creativity. 
-          48 hours to build, create, and revolutionize the future of technology.
-        </p>
-
-        {/* Event Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12 max-w-4xl mx-auto">
-          <div className="bg-card/50 backdrop-blur-sm rounded-lg p-4 border border-border">
-            <Calendar className="h-6 w-6 text-primary mx-auto mb-2" />
-            <div className="text-2xl font-bold text-foreground">48</div>
-            <div className="text-sm text-muted-foreground">Hours</div>
-          </div>
-          <div className="bg-card/50 backdrop-blur-sm rounded-lg p-4 border border-border">
-            <Users className="h-6 w-6 text-secondary mx-auto mb-2" />
-            <div className="text-2xl font-bold text-foreground">500+</div>
-            <div className="text-sm text-muted-foreground">Participants</div>
-          </div>
-          <div className="bg-card/50 backdrop-blur-sm rounded-lg p-4 border border-border">
-            <Trophy className="h-6 w-6 text-accent mx-auto mb-2" />
-            <div className="text-2xl font-bold text-foreground">$50K</div>
-            <div className="text-sm text-muted-foreground">In Prizes</div>
-          </div>
-          <div className="bg-card/50 backdrop-blur-sm rounded-lg p-4 border border-border">
-            <MapPin className="h-6 w-6 text-primary mx-auto mb-2" />
-            <div className="text-2xl font-bold text-foreground">Virtual</div>
-            <div className="text-sm text-muted-foreground">& On-site</div>
-          </div>
-        </div>
-
+       
         {/* Countdown Timer */}
         <div className="mb-12">
           <h3 className="text-2xl font-bold text-foreground mb-6">Event Starts In</h3>
