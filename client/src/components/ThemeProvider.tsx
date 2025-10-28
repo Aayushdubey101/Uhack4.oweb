@@ -19,13 +19,29 @@ export function ThemeProvider({
   children,
   defaultTheme = 'dark',
 }: ThemeProviderProps) {
-  const [theme, setTheme] = useState<Theme>(defaultTheme);
+  // Initialize from localStorage or OS preference, falling back to defaultTheme
+  const [theme, setTheme] = useState<Theme>(() => {
+    try {
+      if (typeof window === 'undefined') return defaultTheme;
+      const stored = window.localStorage.getItem('theme');
+      if (stored === 'light' || stored === 'dark') return stored;
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      return prefersDark ? 'dark' : 'light';
+    } catch {
+      return defaultTheme;
+    }
+  });
 
   useEffect(() => {
     const root = window.document.documentElement;
     
     root.classList.remove('light', 'dark');
     root.classList.add(theme);
+    try {
+      window.localStorage.setItem('theme', theme);
+    } catch {
+      // ignore storage errors (e.g., privacy mode)
+    }
   }, [theme]);
 
   const toggleTheme = () => {

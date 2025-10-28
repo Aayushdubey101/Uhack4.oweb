@@ -7,7 +7,7 @@ export default function Prizes() {
     {
       icon: Trophy,
       title: "Grand Prize",
-      amount: "$25,000",
+      amount: "₹100000",
       description: "Overall best project across all categories",
       color: "text-yellow-400",
       bgColor: "from-yellow-400/20 to-orange-400/20",
@@ -16,7 +16,7 @@ export default function Prizes() {
     {
       icon: Medal,
       title: "Runner Up", 
-      amount: "$15,000",
+      amount: "₹50000",
       description: "Second place overall winner",
       color: "text-gray-300",
       bgColor: "from-gray-300/20 to-gray-400/20",
@@ -25,7 +25,7 @@ export default function Prizes() {
     {
       icon: Award,
       title: "Third Place",
-      amount: "$10,000", 
+      amount: "₹20000", 
       description: "Third place overall winner",
       color: "text-orange-400",
       bgColor: "from-orange-400/20 to-red-400/20",
@@ -36,32 +36,32 @@ export default function Prizes() {
   const specialPrizes = [
     {
       title: "Best UI/UX Design",
-      amount: "$3,000",
+      amount: "₹1000",
       description: "Most innovative and user-friendly interface"
     },
     {
       title: "Best AI Implementation",
-      amount: "$3,000", 
+      amount: "₹1000", 
       description: "Most creative use of artificial intelligence"
     },
     {
       title: "Best Social Impact",
-      amount: "$3,000",
+      amount: "₹1000",
       description: "Solution with greatest potential for social good"
     },
     {
       title: "People's Choice",
-      amount: "$2,000",
+      // amount: "$2,000",
       description: "Voted by event participants and audience"
     },
     {
       title: "Best Beginner Team",
-      amount: "$2,000",
+      // amount: "$2,000",
       description: "Outstanding project by first-time hackathon participants"
     },
     {
       title: "Most Creative Solution",
-      amount: "$2,000", 
+      // amount: "$2,000", 
       description: "Most innovative approach to problem solving"
     }
   ];

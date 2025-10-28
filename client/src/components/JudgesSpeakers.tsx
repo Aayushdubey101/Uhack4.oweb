@@ -6,65 +6,65 @@ import { Linkedin, Twitter, ExternalLink } from 'lucide-react';
 export default function JudgesSpeakers() {
   const judges = [
     {
-      name: "Sarah Chen",
-      title: "CTO at TechVentures",
-      company: "Former Google Engineer",
-      expertise: "AI/ML, Cloud Computing",
-      bio: "15+ years building scalable systems at major tech companies",
-      initials: "SC"
+      name: "Nandita Pradhan",
+      title: "Dean Academic",
+      company: "UGI Institution",
+      expertise: "EC",
+      bio: "30 year experience at UGI institution",
+      initials: "NP"
     },
-    {
-      name: "Marcus Rodriguez",
-      title: "Senior Principal Engineer",
-      company: "Microsoft",
-      expertise: "Full-Stack Development, DevOps",
-      bio: "Open source contributor and hackathon veteran",
-      initials: "MR"
-    },
-    {
-      name: "Dr. Amara Okafor",
-      title: "Head of Innovation",
-      company: "Meta Reality Labs",
-      expertise: "VR/AR, Computer Vision",
-      bio: "PhD in Computer Science, 20+ patents in emerging tech",
-      initials: "AO"
-    },
-    {
-      name: "Jason Kim",
-      title: "Founding Partner",
-      company: "Quantum Capital",
-      expertise: "Venture Capital, Startups",
-      bio: "Invested in 50+ successful tech startups",
-      initials: "JK"
-    }
+    // {
+    //   name: "Marcus Rodriguez",
+    //   title: "Senior Principal Engineer",
+    //   company: "Microsoft",
+    //   expertise: "Full-Stack Development, DevOps",
+    //   bio: "Open source contributor and hackathon veteran",
+    //   initials: "MR"
+    // },
+    // {
+    //   name: "Dr. Amara Okafor",
+    //   title: "Head of Innovation",
+    //   company: "Meta Reality Labs",
+    //   expertise: "VR/AR, Computer Vision",
+    //   bio: "PhD in Computer Science, 20+ patents in emerging tech",
+    //   initials: "AO"
+    // },
+    // {
+    //   name: "Jason Kim",
+    //   title: "Founding Partner",
+    //   company: "Quantum Capital",
+    //   expertise: "Venture Capital, Startups",
+    //   bio: "Invested in 50+ successful tech startups",
+    //   initials: "JK"
+    // }
   ];
 
-  const speakers = [
-    {
-      name: "Alex Thompson",
-      title: "CEO & Founder",
-      company: "CodeCraft Solutions",
-      topic: "Building Scalable Startups",
-      time: "Day 1, 2:00 PM",
-      initials: "AT"
-    },
-    {
-      name: "Priya Sharma",
-      title: "Lead Data Scientist",
-      company: "OpenAI",
-      topic: "The Future of AI Development",
-      time: "Day 1, 4:30 PM",
-      initials: "PS"
-    },
-    {
-      name: "David Williams",
-      title: "VP of Engineering",
-      company: "Stripe",
-      topic: "Fintech Innovation Trends",
-      time: "Day 2, 10:00 AM",
-      initials: "DW"
-    }
-  ];
+  // const speakers = [
+  //   {
+  //     name: "Alex Thompson",
+  //     title: "CEO & Founder",
+  //     company: "CodeCraft Solutions",
+  //     topic: "Building Scalable Startups",
+  //     time: "Day 1, 2:00 PM",
+  //     initials: "AT"
+  //   },
+  //   {
+  //     name: "Priya Sharma",
+  //     title: "Lead Data Scientist",
+  //     company: "OpenAI",
+  //     topic: "The Future of AI Development",
+  //     time: "Day 1, 4:30 PM",
+  //     initials: "PS"
+  //   },
+  //   {
+  //     name: "David Williams",
+  //     title: "VP of Engineering",
+  //     company: "Stripe",
+  //     topic: "Fintech Innovation Trends",
+  //     time: "Day 2, 10:00 AM",
+  //     initials: "DW"
+  //   }
+  // ];
 
   return (
     <section id="judges" className="py-20 bg-background">
@@ -81,7 +81,7 @@ export default function JudgesSpeakers() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="flex justify-center">
             {judges.map((judge, index) => (
               <Card key={index} className="p-6 bg-card hover-elevate border border-border">
                 <div className="text-center">
@@ -136,34 +136,12 @@ export default function JudgesSpeakers() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {speakers.map((speaker, index) => (
-              <Card key={index} className="p-8 bg-card hover-elevate border border-border">
-                <div className="text-center">
-                  <Avatar className="h-24 w-24 mx-auto mb-6">
-                    <AvatarFallback className="bg-secondary text-secondary-foreground text-2xl font-bold">
-                      {speaker.initials}
-                    </AvatarFallback>
-                  </Avatar>
-                  <h3 className="text-2xl font-bold text-foreground mb-2">{speaker.name}</h3>
-                  <p className="text-secondary font-semibold mb-1">{speaker.title}</p>
-                  <p className="text-muted-foreground mb-4">{speaker.company}</p>
-                  
-                  <div className="bg-gradient-to-r from-primary/10 to-secondary/10 rounded-lg p-4 mb-4">
-                    <h4 className="font-semibold text-foreground mb-2">{speaker.topic}</h4>
-                    <Badge variant="outline">{speaker.time}</Badge>
-                  </div>
-                  
-                  <button 
-                    className="flex items-center space-x-2 text-primary hover:text-secondary transition-colors mx-auto"
-                    data-testid={`speaker-profile-${index}`}
-                  >
-                    <span>View Full Bio</span>
-                    <ExternalLink className="h-4 w-4" />
-                  </button>
-                </div>
-              </Card>
-            ))}
+          <div className="flex justify-center">
+            <Card className="p-8 bg-card border border-border w-full max-w-lg">
+              <div className="text-center">
+                <h3 className="text-2xl font-bold text-foreground">Coming soon</h3>
+              </div>
+            </Card>
           </div>
         </div>
 
