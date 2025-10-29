@@ -13,7 +13,7 @@ export function ThemeToggle() {
       data-testid="theme-toggle"
       className="h-9 w-9"
     >
-      {theme === 'dark' ? (
+      {theme === 'light' ? (
         <Sun className="h-4 w-4 text-foreground" />
       ) : (
         <Moon className="h-4 w-4 text-foreground" />

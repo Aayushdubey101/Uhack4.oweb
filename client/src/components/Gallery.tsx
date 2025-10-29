@@ -226,9 +226,9 @@ export default function Gallery() {
           <p className="text-lg text-muted-foreground mb-6">
             Want to be part of the next amazing gallery?
           </p>
-          <Button size="lg" data-testid="gallery-register-btn">
+          {/* <Button size="lg" data-testid="gallery-register-btn">
             Register for UHACK 4.0
-          </Button>
+          </Button> */}
         </div>
       </div>
     </section>

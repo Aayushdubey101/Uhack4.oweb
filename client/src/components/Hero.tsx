@@ -11,9 +11,8 @@ export default function Hero() {
   });
 
   useEffect(() => {
-    // Set hackathon date to 30 days from now
-    const hackathonDate = new Date();
-    hackathonDate.setDate(hackathonDate.getDate() + 30);
+    // Set hackathon date to February 27, 2026
+    const hackathonDate = new Date(2026, 1, 27);
 
     const timer = setInterval(() => {
       const now = new Date().getTime();
@@ -77,7 +76,12 @@ export default function Hero() {
 
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button size="lg" className="text-lg px-8 py-3" data-testid="hero-register">
+          <Button
+            size="lg"
+            className="text-lg px-8 py-3"
+            data-testid="hero-register"
+            onClick={() => window.open('https://docs.google.com/forms/d/e/1FAIpQLSdocC2sMdROytFHS_tOiY8dqloNWHNEwV5UWNBqsODfmPOM6g/viewform?usp=publish-editor', '_blank')}
+          >
             Register Now
           </Button>
           <Button variant="outline" size="lg" className="text-lg px-8 py-3" data-testid="hero-learn-more">

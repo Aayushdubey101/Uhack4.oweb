@@ -53,7 +53,12 @@ export default function Navigation() {
                 {item.name}
               </button>
             ))}
-            <Button variant="default" className="ml-4" data-testid="nav-register">
+            <Button
+              variant="default"
+              className="ml-4"
+              data-testid="nav-register"
+              onClick={() => window.open('https://docs.google.com/forms/d/e/1FAIpQLSdocC2sMdROytFHS_tOiY8dqloNWHNEwV5UWNBqsODfmPOM6g/viewform?usp=publish-editor', '_blank')}
+            >
               Register Now
             </Button>
           </div>
@@ -85,7 +90,12 @@ export default function Navigation() {
                   {item.name}
                 </button>
               ))}
-              <Button variant="default" className="w-full mt-4" data-testid="mobile-register">
+              <Button
+                variant="default"
+                className="w-full mt-4"
+                data-testid="mobile-register"
+                onClick={() => window.open('https://docs.google.com/forms/d/e/1FAIpQLSdocC2sMdROytFHS_tOiY8dqloNWHNEwV5UWNBqsODfmPOM6g/viewform?usp=publish-editor', '_blank')}
+              >
                 Register Now
               </Button>
             </div>
