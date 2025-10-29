@@ -1,6 +1,9 @@
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Trophy, Medal, Award, Star } from 'lucide-react';
+import MotionWrapper from '@/components/MotionWrapper';
+import { fadeUp, cardVariants } from '@/lib/motion';
+import { motion } from 'framer-motion';
 
 export default function Prizes() {
   const prizeCategories = [
@@ -69,80 +72,116 @@ export default function Prizes() {
   return (
     <section id="prizes" className="py-20 bg-card/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-            Win Big at <span className="text-primary">UHACK 4.0</span>
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Compete for over $50,000 in prizes! From grand prizes to special category awards,
-            there are multiple opportunities to win and get recognized for your innovation.
-          </p>
-        </div>
+        <MotionWrapper className="text-center mb-16">
+          <motion.div variants={fadeUp}>
+            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+              Win Big at <span className="text-primary">UHACK 4.0</span>
+            </h2>
+            <motion.div variants={fadeUp}>
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+                Compete for over $50,000 in prizes! From grand prizes to special category awards,
+                there are multiple opportunities to win and get recognized for your innovation.
+              </p>
+            </motion.div>
+          </motion.div>
+        </MotionWrapper>
 
         {/* Main Prizes */}
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
+        <MotionWrapper className="grid md:grid-cols-3 gap-8 mb-16">
           {prizeCategories.map((prize, index) => (
-            <Card 
-              key={index} 
-              className={`p-8 text-center bg-gradient-to-br ${prize.bgColor} border ${prize.borderColor} hover-elevate`}
+            <motion.div
+              key={index}
+              variants={cardVariants}
+              whileHover="hover"
             >
-              <div className="mb-6">
-                <prize.icon className={`h-16 w-16 ${prize.color} mx-auto mb-4`} />
-                <Badge variant="outline" className="mb-4">
-                  {index === 0 ? '1st Place' : index === 1 ? '2nd Place' : '3rd Place'}
-                </Badge>
-              </div>
-              <h3 className="text-2xl font-bold text-foreground mb-2">{prize.title}</h3>
-              <div className={`text-4xl font-black ${prize.color} mb-4`}>{prize.amount}</div>
-              <p className="text-muted-foreground">{prize.description}</p>
-            </Card>
+              <Card
+                className={`p-8 text-center bg-gradient-to-br ${prize.bgColor} border ${prize.borderColor}`}
+              >
+                <div className="mb-6">
+                  <prize.icon className={`h-16 w-16 ${prize.color} mx-auto mb-4`} />
+                  <Badge variant="outline" className="mb-4">
+                    {index === 0 ? '1st Place' : index === 1 ? '2nd Place' : '3rd Place'}
+                  </Badge>
+                </div>
+                <h3 className="text-2xl font-bold text-foreground mb-2">{prize.title}</h3>
+                <div className={`text-4xl font-black ${prize.color} mb-4`}>{prize.amount}</div>
+                <p className="text-muted-foreground">{prize.description}</p>
+              </Card>
+            </motion.div>
           ))}
-        </div>
+        </MotionWrapper>
 
         {/* Special Category Prizes */}
         <div className="mb-12">
-          <h3 className="text-3xl font-bold text-foreground text-center mb-8">
-            Special Category Awards
-          </h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <MotionWrapper className="text-center mb-8">
+            <motion.h3
+              variants={fadeUp}
+              className="text-3xl font-bold text-foreground"
+            >
+              Special Category Awards
+            </motion.h3>
+          </MotionWrapper>
+          <MotionWrapper className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {specialPrizes.map((prize, index) => (
-              <Card key={index} className="p-6 bg-card hover-elevate border border-border">
-                <div className="flex items-start space-x-4">
-                  <Star className="h-6 w-6 text-accent flex-shrink-0 mt-1" />
-                  <div>
-                    <h4 className="text-lg font-semibold text-foreground mb-2">{prize.title}</h4>
-                    <div className="text-2xl font-bold text-primary mb-2">{prize.amount}</div>
-                    <p className="text-sm text-muted-foreground">{prize.description}</p>
+              <motion.div
+                key={index}
+                variants={cardVariants}
+                whileHover="hover"
+              >
+                <Card className="p-6 bg-card border border-border">
+                  <div className="flex items-start space-x-4">
+                    <Star className="h-6 w-6 text-accent flex-shrink-0 mt-1" />
+                    <div>
+                      <h4 className="text-lg font-semibold text-foreground mb-2">{prize.title}</h4>
+                      <div className="text-2xl font-bold text-primary mb-2">{prize.amount}</div>
+                      <p className="text-sm text-muted-foreground">{prize.description}</p>
+                    </div>
                   </div>
-                </div>
-              </Card>
+                </Card>
+              </motion.div>
             ))}
-          </div>
+          </MotionWrapper>
         </div>
 
         {/* Additional Benefits */}
-        <div className="bg-gradient-to-r from-primary/10 via-secondary/10 to-accent/10 rounded-2xl p-8 border border-border">
-          <h3 className="text-2xl font-bold text-foreground text-center mb-6">
-            Beyond Cash Prizes
-          </h3>
-          <div className="grid md:grid-cols-3 gap-6 text-center">
-            <div>
-              <div className="text-3xl font-bold text-primary mb-2">1:1</div>
-              <div className="text-foreground font-semibold mb-2">Mentorship Sessions</div>
-              <div className="text-sm text-muted-foreground">With industry experts and VCs</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-secondary mb-2">Job</div>
-              <div className="text-foreground font-semibold mb-2">Interview Opportunities</div>
-              <div className="text-sm text-muted-foreground">With top tech companies</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-accent mb-2">Free</div>
-              <div className="text-foreground font-semibold mb-2">Swag & Goodies</div>
-              <div className="text-sm text-muted-foreground">T-shirts, stickers, and more!</div>
-            </div>
-          </div>
-        </div>
+        <MotionWrapper className="bg-gradient-to-r from-primary/10 via-secondary/10 to-accent/10 rounded-2xl p-8 border border-border">
+          <motion.div variants={fadeUp} className="text-center mb-6">
+            <h3 className="text-2xl font-bold text-foreground">
+              Beyond Cash Prizes
+            </h3>
+          </motion.div>
+          <MotionWrapper className="grid md:grid-cols-3 gap-6 text-center">
+            {[
+              {
+                value: "1:1",
+                title: "Mentorship Sessions",
+                description: "With industry experts and VCs"
+              },
+              {
+                value: "Job",
+                title: "Interview Opportunities",
+                description: "With top tech companies"
+              },
+              {
+                value: "Free",
+                title: "Swag & Goodies",
+                description: "T-shirts, stickers, and more!"
+              }
+            ].map((benefit, index) => (
+              <motion.div
+                key={index}
+                variants={fadeUp}
+                className="text-center"
+              >
+                <div className={`text-3xl font-bold ${index === 0 ? 'text-primary' : index === 1 ? 'text-secondary' : 'text-accent'} mb-2`}>
+                  {benefit.value}
+                </div>
+                <div className="text-foreground font-semibold mb-2">{benefit.title}</div>
+                <div className="text-sm text-muted-foreground">{benefit.description}</div>
+              </motion.div>
+            ))}
+          </MotionWrapper>
+        </MotionWrapper>
       </div>
     </section>
   );

@@ -3,6 +3,9 @@ import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Camera, Play, Award, Users, Code, Zap } from 'lucide-react';
+import MotionWrapper from '@/components/MotionWrapper';
+import { fadeUp, cardVariants } from '@/lib/motion';
+import { motion } from 'framer-motion';
 
 export default function Gallery() {
   const [activeCategory, setActiveCategory] = useState('all');
@@ -99,16 +102,22 @@ export default function Gallery() {
   return (
     <section id="gallery" className="py-20 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <Camera className="h-16 w-16 text-primary mx-auto mb-6" />
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-            Event <span className="text-primary">Gallery</span>
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Take a look at the amazing moments, innovative projects, and vibrant 
-            community from previous UHACK events.
-          </p>
-        </div>
+        <MotionWrapper className="text-center mb-16">
+          <motion.div variants={fadeUp}>
+            <Camera className="h-16 w-16 text-primary mx-auto mb-6" />
+          </motion.div>
+          <motion.div variants={fadeUp}>
+            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+              Event <span className="text-primary">Gallery</span>
+            </h2>
+          </motion.div>
+          <motion.div variants={fadeUp}>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              Take a look at the amazing moments, innovative projects, and vibrant
+              community from previous UHACK events.
+            </p>
+          </motion.div>
+        </MotionWrapper>
 
         {/* Category Filters */}
         <div className="flex flex-wrap justify-center gap-3 mb-12">
@@ -134,53 +143,58 @@ export default function Gallery() {
         </div>
 
         {/* Gallery Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        <MotionWrapper className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
           {filteredItems.map((item) => (
-            <Card 
-              key={item.id} 
-              className="group cursor-pointer overflow-hidden bg-card hover-elevate border border-border"
-              data-testid={`gallery-item-${item.id}`}
+            <motion.div
+              key={item.id}
+              variants={cardVariants}
+              whileHover="hover"
             >
-              {/* Image/Video Placeholder */}
-              <div className="relative h-64 bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20 flex items-center justify-center">
-                {item.type === 'video' ? (
-                  <div className="text-center">
-                    <Play className="h-16 w-16 text-white/80 mx-auto mb-2" />
-                    <Badge variant="secondary">Video</Badge>
-                  </div>
-                ) : (
-                  <div className="text-center">
-                    <Camera className="h-16 w-16 text-white/80 mx-auto mb-2" />
-                    <Badge variant="outline">Photo</Badge>
-                  </div>
-                )}
-                
-                {/* Hover Overlay */}
-                <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                  <div className="text-center text-white">
-                    {item.type === 'video' ? (
-                      <Play className="h-12 w-12 mx-auto mb-2" />
-                    ) : (
-                      <Zap className="h-12 w-12 mx-auto mb-2" />
-                    )}
-                    <p className="text-sm">Click to {item.type === 'video' ? 'play' : 'view'}</p>
-                  </div>
-                </div>
-              </div>
+              <Card
+                className="group cursor-pointer overflow-hidden bg-card border border-border"
+                data-testid={`gallery-item-${item.id}`}
+              >
+                {/* Image/Video Placeholder */}
+                <div className="relative h-64 bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20 flex items-center justify-center">
+                  {item.type === 'video' ? (
+                    <div className="text-center">
+                      <Play className="h-16 w-16 text-white/80 mx-auto mb-2" />
+                      <Badge variant="secondary">Video</Badge>
+                    </div>
+                  ) : (
+                    <div className="text-center">
+                      <Camera className="h-16 w-16 text-white/80 mx-auto mb-2" />
+                      <Badge variant="outline">Photo</Badge>
+                    </div>
+                  )}
 
-              {/* Content */}
-              <div className="p-6">
-                <div className="flex items-center justify-between mb-3">
-                  <h3 className="text-lg font-semibold text-foreground">{item.title}</h3>
-                  <Badge variant="secondary" className="text-xs">
-                    {categories.find(cat => cat.id === item.category)?.label}
-                  </Badge>
+                  {/* Hover Overlay */}
+                  <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <div className="text-center text-white">
+                      {item.type === 'video' ? (
+                        <Play className="h-12 w-12 mx-auto mb-2" />
+                      ) : (
+                        <Zap className="h-12 w-12 mx-auto mb-2" />
+                      )}
+                      <p className="text-sm">Click to {item.type === 'video' ? 'play' : 'view'}</p>
+                    </div>
+                  </div>
                 </div>
-                <p className="text-muted-foreground text-sm">{item.description}</p>
-              </div>
-            </Card>
+
+                {/* Content */}
+                <div className="p-6">
+                  <div className="flex items-center justify-between mb-3">
+                    <h3 className="text-lg font-semibold text-foreground">{item.title}</h3>
+                    <Badge variant="secondary" className="text-xs">
+                      {categories.find(cat => cat.id === item.category)?.label}
+                    </Badge>
+                  </div>
+                  <p className="text-muted-foreground text-sm">{item.description}</p>
+                </div>
+              </Card>
+            </motion.div>
           ))}
-        </div>
+        </MotionWrapper>
 
         {/* Stats Section */}
         <div className="bg-gradient-to-r from-card/50 to-card/30 rounded-2xl p-8 border border-border">

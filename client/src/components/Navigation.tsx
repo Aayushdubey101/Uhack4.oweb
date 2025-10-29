@@ -20,8 +20,8 @@ export default function Navigation() {
     // { name: 'Prizes', id: 'prizes' },
     { name: 'Timeline', id: 'timeline' },
     { name: 'Sponsors', id: 'sponsors' },
-    { name: 'Gallery', id: 'gallery' },
     { name: 'FAQ', id: 'faq' },
+    { name: 'Gallery', id: 'gallery' },
     { name: 'Team', id: 'team' },
     { name: 'Certificate', id: 'certificate' }
   ];

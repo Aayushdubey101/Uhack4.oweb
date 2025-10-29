@@ -1,6 +1,9 @@
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Clock, Calendar, MapPin, Users, Code, Trophy, Coffee, Presentation } from 'lucide-react';
+import MotionWrapper from '@/components/MotionWrapper';
+import { fadeUp, cardVariants } from '@/lib/motion';
+import { motion } from 'framer-motion';
 
 export default function Timeline() {
   const timelineEvents = [
@@ -159,66 +162,82 @@ export default function Timeline() {
   return (
     <section id="timeline" className="py-20 bg-card/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-            Event <span className="text-primary">Timeline</span>
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            A detailed schedule of all activities, workshops, and key moments 
-            during the 48-hour hackathon experience.
-          </p>
-        </div>
+        <MotionWrapper className="text-center mb-16">
+          <motion.div variants={fadeUp}>
+            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+              Event <span className="text-primary">Timeline</span>
+            </h2>
+            <motion.div variants={fadeUp}>
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+                A detailed schedule of all activities, workshops, and key moments
+                during the 48-hour hackathon experience.
+              </p>
+            </motion.div>
+          </motion.div>
+        </MotionWrapper>
 
         <div className="space-y-12">
           {timelineEvents.map((day, dayIndex) => (
             <div key={dayIndex} className="relative">
               {/* Day Header */}
-              <div className="flex items-center mb-8">
-                <div className="bg-primary text-primary-foreground px-6 py-3 rounded-lg font-bold text-xl">
+              <MotionWrapper className="flex items-center mb-8">
+                <motion.div
+                  variants={fadeUp}
+                  className="bg-primary text-primary-foreground px-6 py-3 rounded-lg font-bold text-xl"
+                >
                   {day.day}
-                </div>
-                <div className="ml-4 text-muted-foreground font-semibold">
+                </motion.div>
+                <motion.div
+                  variants={fadeUp}
+                  className="ml-4 text-muted-foreground font-semibold"
+                >
                   {day.date}
-                </div>
+                </motion.div>
                 <div className="flex-1 h-px bg-border ml-6"></div>
-              </div>
+              </MotionWrapper>
 
               {/* Timeline Events */}
-              <div className="grid gap-6">
+              <MotionWrapper className="grid gap-6">
                 {day.events.map((event, eventIndex) => (
-                  <Card key={eventIndex} className="p-6 bg-card hover-elevate border border-border">
-                    <div className="flex items-start space-x-4">
-                      {/* Time */}
-                      <div className="flex-shrink-0">
-                        <Badge variant="outline" className="font-mono">
-                          {event.time}
-                        </Badge>
-                      </div>
-
-                      {/* Icon */}
-                      <div className={`flex-shrink-0 ${getEventColor(event.type)}`}>
-                        <event.icon className="h-6 w-6" />
-                      </div>
-
-                      {/* Content */}
-                      <div className="flex-1">
-                        <div className="flex items-start justify-between mb-2">
-                          <h3 className="text-xl font-bold text-foreground">
-                            {event.title}
-                          </h3>
-                          <Badge 
-                            variant={getBadgeVariant(event.type) as any}
-                            className="ml-4"
-                          >
-                            {event.type}
+                  <motion.div
+                    key={eventIndex}
+                    variants={cardVariants}
+                    whileHover="hover"
+                  >
+                    <Card className="p-6 bg-card border border-border">
+                      <div className="flex items-start space-x-4">
+                        {/* Time */}
+                        <div className="flex-shrink-0">
+                          <Badge variant="outline" className="font-mono">
+                            {event.time}
                           </Badge>
                         </div>
-                        <p className="text-muted-foreground">{event.description}</p>
+
+                        {/* Icon */}
+                        <div className={`flex-shrink-0 ${getEventColor(event.type)}`}>
+                          <event.icon className="h-6 w-6" />
+                        </div>
+
+                        {/* Content */}
+                        <div className="flex-1">
+                          <div className="flex items-start justify-between mb-2">
+                            <h3 className="text-xl font-bold text-foreground">
+                              {event.title}
+                            </h3>
+                            <Badge
+                              variant={getBadgeVariant(event.type) as any}
+                              className="ml-4"
+                            >
+                              {event.type}
+                            </Badge>
+                          </div>
+                          <p className="text-muted-foreground">{event.description}</p>
+                        </div>
                       </div>
-                    </div>
-                  </Card>
+                    </Card>
+                  </motion.div>
                 ))}
-              </div>
+              </MotionWrapper>
 
               {/* Connecting Line (except for last day) */}
               {dayIndex < timelineEvents.length - 1 && (

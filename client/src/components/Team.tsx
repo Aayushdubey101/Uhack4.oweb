@@ -2,6 +2,9 @@ import { Card } from '@/components/ui/card';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Linkedin, Twitter, Mail, Users, Heart } from 'lucide-react';
+import MotionWrapper from '@/components/MotionWrapper';
+import { fadeUp, cardVariants } from '@/lib/motion';
+import { motion } from 'framer-motion';
 
 export default function Team() {
   const organizers = [
@@ -75,89 +78,111 @@ export default function Team() {
   return (
     <section id="team" className="py-20 bg-card/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <Users className="h-16 w-16 text-primary mx-auto mb-6" />
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-            Meet the <span className="text-primary">Organizing Team</span>
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            The passionate individuals behind UHACK 4.0 who work tirelessly to create 
-            an unforgettable hackathon experience for everyone.
-          </p>
-        </div>
+        <MotionWrapper className="text-center mb-16">
+          <motion.div variants={fadeUp}>
+            <Users className="h-16 w-16 text-primary mx-auto mb-6" />
+          </motion.div>
+          <motion.div variants={fadeUp}>
+            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+              Meet the <span className="text-primary">Organizing Team</span>
+            </h2>
+          </motion.div>
+          <motion.div variants={fadeUp}>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              The passionate individuals behind UHACK 4.0 who work tirelessly to create
+              an unforgettable hackathon experience for everyone.
+            </p>
+          </motion.div>
+        </MotionWrapper>
 
         {/* Core Organizers */}
-        <div className="mb-20">
-          <h3 className="text-3xl font-bold text-foreground text-center mb-12">
-            Core Organizing Team
-          </h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <MotionWrapper className="mb-20">
+          <motion.div variants={fadeUp}>
+            <h3 className="text-3xl font-bold text-foreground text-center mb-12">
+              Core Organizing Team
+            </h3>
+          </motion.div>
+          <MotionWrapper className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {organizers.map((member, index) => (
-              <Card key={index} className="p-6 bg-card hover-elevate border border-border text-center">
-                <Avatar className="h-24 w-24 mx-auto mb-6">
-                  <AvatarFallback className={`${member.color} text-white text-2xl font-bold`}>
-                    {member.initials}
-                  </AvatarFallback>
-                </Avatar>
-                <h3 className="text-xl font-bold text-foreground mb-1">{member.name}</h3>
-                <p className="text-primary font-semibold mb-1">{member.role}</p>
-                <p className="text-sm text-muted-foreground mb-4">{member.company}</p>
-                <p className="text-sm text-muted-foreground mb-6">{member.bio}</p>
-                
-                <div className="flex justify-center space-x-3">
-                  <Button 
-                    size="sm" 
-                    variant="ghost"
-                    className="p-2"
-                    data-testid={`team-linkedin-${index}`}
-                  >
-                    <Linkedin className="h-4 w-4" />
-                  </Button>
-                  <Button 
-                    size="sm"
-                    variant="ghost" 
-                    className="p-2"
-                    data-testid={`team-twitter-${index}`}
-                  >
-                    <Twitter className="h-4 w-4" />
-                  </Button>
-                  <Button 
-                    size="sm"
-                    variant="ghost"
-                    className="p-2"
-                    data-testid={`team-email-${index}`}
-                  >
-                    <Mail className="h-4 w-4" />
-                  </Button>
-                </div>
-              </Card>
-            ))}
-          </div>
-        </div>
-
-        {/* Volunteers Section */}
-        <div className="mb-16">
-          <h3 className="text-3xl font-bold text-foreground text-center mb-12">
-            Amazing Volunteers
-          </h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {volunteers.map((volunteer, index) => (
-              <Card key={index} className="p-6 bg-card hover-elevate border border-border">
-                <div className="flex items-center space-x-4">
-                  <Avatar className="h-16 w-16">
-                    <AvatarFallback className="bg-muted text-foreground text-lg font-semibold">
-                      {volunteer.initials}
+              <motion.div
+                key={index}
+                variants={cardVariants}
+                whileHover="hover"
+              >
+                <Card className="p-6 bg-card border border-border text-center">
+                  <Avatar className="h-24 w-24 mx-auto mb-6">
+                    <AvatarFallback className={`${member.color} text-white text-2xl font-bold`}>
+                      {member.initials}
                     </AvatarFallback>
                   </Avatar>
-                  <div>
-                    <h4 className="text-lg font-semibold text-foreground">{volunteer.name}</h4>
-                    <p className="text-muted-foreground">{volunteer.role}</p>
+                  <h3 className="text-xl font-bold text-foreground mb-1">{member.name}</h3>
+                  <p className="text-primary font-semibold mb-1">{member.role}</p>
+                  <p className="text-sm text-muted-foreground mb-4">{member.company}</p>
+                  <p className="text-sm text-muted-foreground mb-6">{member.bio}</p>
+
+                  <div className="flex justify-center space-x-3">
+                    <Button
+                      size="sm"
+                      variant="ghost"
+                      className="p-2"
+                      data-testid={`team-linkedin-${index}`}
+                    >
+                      <Linkedin className="h-4 w-4" />
+                    </Button>
+                    <Button
+                      size="sm"
+                      variant="ghost"
+                      className="p-2"
+                      data-testid={`team-twitter-${index}`}
+                    >
+                      <Twitter className="h-4 w-4" />
+                    </Button>
+                    <Button
+                      size="sm"
+                      variant="ghost"
+                      className="p-2"
+                      data-testid={`team-email-${index}`}
+                    >
+                      <Mail className="h-4 w-4" />
+                    </Button>
                   </div>
-                </div>
-              </Card>
+                </Card>
+              </motion.div>
             ))}
-          </div>
-        </div>
+          </MotionWrapper>
+        </MotionWrapper>
+
+        {/* Volunteers Section */}
+        <MotionWrapper className="mb-16">
+          <motion.div variants={fadeUp}>
+            <h3 className="text-3xl font-bold text-foreground text-center mb-12">
+              Amazing Volunteers
+            </h3>
+          </motion.div>
+          <MotionWrapper className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {volunteers.map((volunteer, index) => (
+              <motion.div
+                key={index}
+                variants={cardVariants}
+                whileHover="hover"
+              >
+                <Card className="p-6 bg-card border border-border">
+                  <div className="flex items-center space-x-4">
+                    <Avatar className="h-16 w-16">
+                      <AvatarFallback className="bg-muted text-foreground text-lg font-semibold">
+                        {volunteer.initials}
+                      </AvatarFallback>
+                    </Avatar>
+                    <div>
+                      <h4 className="text-lg font-semibold text-foreground">{volunteer.name}</h4>
+                      <p className="text-muted-foreground">{volunteer.role}</p>
+                    </div>
+                  </div>
+                </Card>
+              </motion.div>
+            ))}
+          </MotionWrapper>
+        </MotionWrapper>
 
         {/* Quantum Minds Section */}
         <div className="bg-gradient-to-r from-primary/10 via-secondary/10 to-accent/10 rounded-2xl p-12 text-center border border-border">

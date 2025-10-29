@@ -1,6 +1,9 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Card } from '@/components/ui/card';
 import { HelpCircle } from 'lucide-react';
+import MotionWrapper from '@/components/MotionWrapper';
+import { fadeUp, cardVariants } from '@/lib/motion';
+import { motion } from 'framer-motion';
 
 export default function FAQ() {
   const faqs = [
@@ -57,15 +60,21 @@ export default function FAQ() {
   return (
     <section id="faq" className="py-20 bg-card/30">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <HelpCircle className="h-16 w-16 text-primary mx-auto mb-6" />
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-            Frequently Asked <span className="text-primary">Questions</span>
-          </h2>
-          <p className="text-xl text-muted-foreground">
-            Got questions? We've got answers! Find everything you need to know about UHACK 4.0.
-          </p>
-        </div>
+        <MotionWrapper className="text-center mb-16">
+          <motion.div variants={fadeUp}>
+            <HelpCircle className="h-16 w-16 text-primary mx-auto mb-6" />
+          </motion.div>
+          <motion.div variants={fadeUp}>
+            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+              Frequently Asked <span className="text-primary">Questions</span>
+            </h2>
+          </motion.div>
+          <motion.div variants={fadeUp}>
+            <p className="text-xl text-muted-foreground">
+              Got questions? We've got answers! Find everything you need to know about UHACK 4.0.
+            </p>
+          </motion.div>
+        </MotionWrapper>
 
         <Card className="p-8 bg-card border border-border">
           <Accordion type="single" collapsible className="w-full">

@@ -2,6 +2,9 @@ import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { ExternalLink, Star, Award, Trophy } from 'lucide-react';
+import MotionWrapper from '@/components/MotionWrapper';
+import { fadeUp, cardVariants } from '@/lib/motion';
+import { motion } from 'framer-motion';
 
 export default function Sponsors() {
   const sponsorTiers = [
@@ -79,20 +82,24 @@ export default function Sponsors() {
   return (
     <section id="sponsors" className="py-20 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-            Our Amazing <span className="text-primary">Sponsors</span>
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            UHACK 4.0 is made possible by our incredible partners who support
-            innovation and the next generation of tech leaders.
-          </p>
-        </div>
+        <MotionWrapper className="text-center mb-16">
+          <motion.div variants={fadeUp}>
+            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+              Our Amazing <span className="text-primary">Sponsors</span>
+            </h2>
+            <motion.div variants={fadeUp}>
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+                UHACK 4.0 is made possible by our incredible partners who support
+                innovation and the next generation of tech leaders.
+              </p>
+            </motion.div>
+          </motion.div>
+        </MotionWrapper>
 
         {/* Sponsor Tiers */}
-        <div className="space-y-12 mb-16">
+        <MotionWrapper className="space-y-12 mb-16">
           {sponsorTiers.map((tier, tierIndex) => (
-            <div key={tierIndex}>
+            <motion.div key={tierIndex} variants={fadeUp}>
               {/* Tier Header */}
               <div className="flex items-center justify-center mb-8">
                 <div className={`flex items-center space-x-3 bg-gradient-to-r ${tier.bgColor} px-6 py-3 rounded-lg border ${tier.borderColor}`}>
@@ -102,52 +109,66 @@ export default function Sponsors() {
               </div>
 
               {/* Sponsors Grid */}
-              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <MotionWrapper className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {tier.sponsors.map((sponsor, sponsorIndex) => (
-                  <Card key={sponsorIndex} className="p-8 bg-card hover-elevate border border-border text-center">
-                    <div className={`w-16 h-16 mx-auto mb-4 bg-gradient-to-br ${tier.bgColor} rounded-lg flex items-center justify-center border ${tier.borderColor}`}>
-                      <span className="text-2xl font-bold text-foreground">
-                        {sponsor.name.charAt(0)}
-                      </span>
-                    </div>
-                    <h3 className="text-xl font-bold text-foreground mb-2">{sponsor.name}</h3>
-                    <p className="text-sm text-muted-foreground mb-4">{sponsor.description}</p>
-                    <Button variant="outline" size="sm" data-testid={`sponsor-${sponsor.name.toLowerCase()}`}>
-                      <ExternalLink className="h-4 w-4 mr-2" />
-                      Visit Website
-                    </Button>
-                  </Card>
+                  <motion.div
+                    key={sponsorIndex}
+                    variants={cardVariants}
+                    whileHover="hover"
+                  >
+                    <Card className="p-8 bg-card border border-border text-center">
+                      <div className={`w-16 h-16 mx-auto mb-4 bg-gradient-to-br ${tier.bgColor} rounded-lg flex items-center justify-center border ${tier.borderColor}`}>
+                        <span className="text-2xl font-bold text-foreground">
+                          {sponsor.name.charAt(0)}
+                        </span>
+                      </div>
+                      <h3 className="text-xl font-bold text-foreground mb-2">{sponsor.name}</h3>
+                      <p className="text-sm text-muted-foreground mb-4">{sponsor.description}</p>
+                      <Button variant="outline" size="sm" data-testid={`sponsor-${sponsor.name.toLowerCase()}`}>
+                        <ExternalLink className="h-4 w-4 mr-2" />
+                        Visit Website
+                      </Button>
+                    </Card>
+                  </motion.div>
                 ))}
-              </div>
-            </div>
+              </MotionWrapper>
+            </motion.div>
           ))}
-        </div>
+        </MotionWrapper>
 
         {/* Sponsorship Benefits */}
-        <div className="mb-16">
-          <h3 className="text-3xl font-bold text-foreground text-center mb-12">
-            Sponsorship Benefits
-          </h3>
-          <div className="grid lg:grid-cols-3 gap-8">
+        <MotionWrapper className="mb-16">
+          <motion.div variants={fadeUp}>
+            <h3 className="text-3xl font-bold text-foreground text-center mb-12">
+              Sponsorship Benefits
+            </h3>
+          </motion.div>
+          <MotionWrapper className="grid lg:grid-cols-3 gap-8">
             {benefits.map((benefitTier, index) => (
-              <Card key={index} className="p-6 bg-card border border-border">
-                <div className="flex items-center space-x-2 mb-6">
-                  <Badge variant="default" className="text-lg px-3 py-1">
-                    {benefitTier.tier}
-                  </Badge>
-                </div>
-                <ul className="space-y-3">
-                  {benefitTier.benefits.map((benefit, benefitIndex) => (
-                    <li key={benefitIndex} className="flex items-start space-x-3">
-                      <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                      <span className="text-muted-foreground">{benefit}</span>
-                    </li>
-                  ))}
-                </ul>
-              </Card>
+              <motion.div
+                key={index}
+                variants={cardVariants}
+                whileHover="hover"
+              >
+                <Card className="p-6 bg-card border border-border">
+                  <div className="flex items-center space-x-2 mb-6">
+                    <Badge variant="default" className="text-lg px-3 py-1">
+                      {benefitTier.tier}
+                    </Badge>
+                  </div>
+                  <ul className="space-y-3">
+                    {benefitTier.benefits.map((benefit, benefitIndex) => (
+                      <li key={benefitIndex} className="flex items-start space-x-3">
+                        <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                        <span className="text-muted-foreground">{benefit}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </Card>
+              </motion.div>
             ))}
-          </div>
-        </div>
+          </MotionWrapper>
+        </MotionWrapper>
 
         {/* Become a Sponsor CTA */}
         <div className="bg-gradient-to-r from-primary/10 via-secondary/10 to-accent/10 rounded-2xl p-12 text-center border border-border">

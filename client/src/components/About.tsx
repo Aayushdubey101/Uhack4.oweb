@@ -3,6 +3,8 @@ import { Card } from "@/components/ui/card";
 import { Code, Lightbulb, Users, Zap } from "lucide-react";
 import { motion } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
+import MotionWrapper from "@/components/MotionWrapper";
+import { fadeUp, cardVariants } from "@/lib/motion";
 
 export default function About() {
   const features = [
@@ -32,25 +34,13 @@ export default function About() {
     },
   ];
 
-  const fadeUp = {
-    hidden: { opacity: 0, y: 30 },
-    visible: (i = 1) => ({
-      opacity: 1,
-      y: 0,
-      transition: { delay: i * 0.2, duration: 0.6, ease: "easeOut" },
-    }),
-  };
-
   return (
     <section id="about" className="py-20 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-16">
+        <MotionWrapper className="text-center mb-16">
           <motion.h2
             variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
             className="text-4xl md:text-5xl font-bold text-foreground mb-6"
           >
             <TypeAnimation
@@ -68,10 +58,6 @@ export default function About() {
 
           <motion.p
             variants={fadeUp}
-            custom={1}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
             className="text-xl text-muted-foreground max-w-3xl mx-auto"
           >
             <TypeAnimation
@@ -83,16 +69,13 @@ export default function About() {
               cursor={false}
             />
           </motion.p>
-        </div>
+        </MotionWrapper>
 
         {/* Description section */}
-        <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
+        <MotionWrapper className="grid md:grid-cols-2 gap-12 items-center mb-16">
           <div>
             <motion.h3
               variants={fadeUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
               className="text-3xl font-bold text-foreground mb-6"
             >
               <TypeAnimation
@@ -107,10 +90,6 @@ export default function About() {
 
             <motion.div
               variants={fadeUp}
-              custom={1}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
               className="space-y-6"
             >
               <TypeAnimation
@@ -139,10 +118,6 @@ export default function About() {
             {/* Bullet points */}
             <motion.div
               variants={fadeUp}
-              custom={2}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
               className="space-y-4 mt-8"
             >
               {[
@@ -173,13 +148,10 @@ export default function About() {
           {/* Right-side feature card */}
           <motion.div
             variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
             className="relative"
           >
             <div className="bg-gradient-to-br from-primary/20 to-secondary/20 rounded-2xl p-8 border border-border shadow-lg">
-              <div className="space-y-6">
+              <MotionWrapper className="space-y-6">
                 {[
                   { icon: Code, label: "Code", desc: "Build innovative solutions" },
                   { icon: Lightbulb, label: "Create", desc: "Turn ideas into reality" },
@@ -188,10 +160,6 @@ export default function About() {
                   <motion.div
                     key={i}
                     variants={fadeUp}
-                    custom={i}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
                     className="flex items-center space-x-4"
                   >
                     <div className="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center">
@@ -205,29 +173,20 @@ export default function About() {
                     </div>
                   </motion.div>
                 ))}
-              </div>
+              </MotionWrapper>
             </div>
           </motion.div>
-        </div>
+        </MotionWrapper>
 
         {/* Features grid */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-          viewport={{ once: true }}
-          className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
-        >
+        <MotionWrapper className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {features.map((feature, index) => (
             <motion.div
               key={index}
-              variants={fadeUp}
-              custom={index}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
+              variants={cardVariants}
+              whileHover="hover"
             >
-              <Card className="p-6 bg-card hover-elevate border border-border transition-transform duration-300 hover:-translate-y-2">
+              <Card className="p-6 bg-card border border-border">
                 <feature.icon className="h-10 w-10 text-primary mb-4" />
                 <h3 className="text-xl font-semibold text-foreground mb-3">
                   {feature.title}
@@ -236,7 +195,7 @@ export default function About() {
               </Card>
             </motion.div>
           ))}
-        </motion.div>
+        </MotionWrapper>
       </div>
     </section>
   );
